@@ -1,0 +1,51 @@
+media:
+  input: assets/img/posts
+  output: /assets/img/posts
+
+content:
+  - name: posts
+    label: 글 관리
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+
+    view:
+      primary: title
+      sort: date
+      order: desc
+
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+
+      - name: date
+        label: 작성일
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+
+      - name: categories
+        label: 카테고리
+        type: select
+        required: true
+        options:
+          multiple: true
+          min: 1
+          max: 1
+          values:
+            - 개발
+            - CTF/Wargame
+            - BugbBounty
+            - 블로그/기술문서
+            - 논문/컨퍼런스
+            - 공모전/자격증
+
+      - name: body
+        label: 본문
+        type: rich-text
+        options:
+          format: markdown
